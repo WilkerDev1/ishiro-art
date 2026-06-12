@@ -42,7 +42,7 @@ async function main() {
       id: 'main',
       artistName: 'ISHIRO',
       tagline: 'Cute & Funny Artist',
-      email: 'ishiro.art@example.com',
+      email: 'ishirocrabb@gmail.com',
       bio: '⭐ 19 | Cute & Funny Artist 😭\nCommissions Open (DMs)\nPixiv: pixiv.net/en/users/61774...',
     },
   });
@@ -53,7 +53,7 @@ async function main() {
     { platform: 'twitter', url: 'https://x.com/ISHIRO_Art', label: 'X / Twitter', handle: '@ISHIRO_Art', icon: 'twitter', order: 1, visible: true },
     { platform: 'pixiv', url: 'https://pixiv.net/en/users/61774', label: 'Pixiv', handle: 'ISHIRO', icon: 'pixiv', order: 2, visible: true },
     { platform: 'instagram', url: 'https://instagram.com/ishiro_art', label: 'Instagram', handle: '@ishiro_art', icon: 'instagram', order: 3, visible: true },
-    { platform: 'email', url: 'mailto:ishiro.art@example.com', label: 'Email', handle: 'ishiro.art@example.com', icon: 'email', order: 4, visible: true },
+    { platform: 'email', url: 'mailto:ishirocrabb@gmail.com', label: 'Email', handle: 'ishirocrabb@gmail.com', icon: 'email', order: 4, visible: true },
   ];
 
   for (const link of socialLinks) {
