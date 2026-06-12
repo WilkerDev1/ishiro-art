@@ -4,6 +4,8 @@ import prisma from '@/lib/prisma';
 import AdminDashboard from '@/components/AdminDashboard';
 import type { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Admin Dashboard | ISHIRO_Art',
   description: 'Manage gallery, uploads, social links, and website settings.',

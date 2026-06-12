@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import type { Artwork, SocialLink, SiteConfig } from '@/generated/prisma/client';
 
 interface AdminDashboardProps {
@@ -15,6 +16,7 @@ export default function AdminDashboard({
   initialSocialLinks,
   initialSiteConfig,
 }: AdminDashboardProps) {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<'gallery' | 'upload' | 'social' | 'config'>('gallery');
   const [artworks, setArtworks] = useState<Artwork[]>(initialArtworks);
   const [socialLinks, setSocialLinks] = useState<SocialLink[]>(initialSocialLinks);
@@ -142,6 +144,7 @@ export default function AdminDashboard({
       const newArtwork = await artworkRes.json();
       setArtworks((prev) => [...prev, newArtwork].sort((a, b) => a.order - b.order));
       showToast('Artwork uploaded successfully!');
+      router.refresh();
 
       // Reset form
       setUploadFile(null);
@@ -223,6 +226,7 @@ export default function AdminDashboard({
       );
       setEditingArtwork(null);
       showToast('Artwork updated successfully!');
+      router.refresh();
     } catch (err: any) {
       console.error(err);
       showToast(err.message || 'Failed to update artwork.', 'error');
@@ -243,6 +247,7 @@ export default function AdminDashboard({
 
       setArtworks((prev) => prev.filter((art) => art.id !== id));
       showToast('Artwork deleted successfully.');
+      router.refresh();
     } catch (err: any) {
       console.error(err);
       showToast(err.message || 'Failed to delete artwork.', 'error');
@@ -304,6 +309,7 @@ export default function AdminDashboard({
       );
       setEditingSocial(null);
       showToast('Social link updated successfully!');
+      router.refresh();
     } catch (err: any) {
       console.error(err);
       showToast(err.message || 'Failed to update social link.', 'error');
@@ -340,6 +346,7 @@ export default function AdminDashboard({
         order: socialLinks.length + 1,
       });
       showToast('Social link added!');
+      router.refresh();
     } catch (err: any) {
       console.error(err);
       showToast(err.message || 'Failed to add social link.', 'error');
@@ -360,6 +367,7 @@ export default function AdminDashboard({
 
       setSocialLinks((prev) => prev.filter((link) => link.id !== id));
       showToast('Social link deleted.');
+      router.refresh();
     } catch (err: any) {
       console.error(err);
       showToast(err.message || 'Failed to delete social link.', 'error');
@@ -471,6 +479,7 @@ export default function AdminDashboard({
       const updated = await res.json();
       setSiteConfig(updated);
       showToast('Config saved successfully!');
+      router.refresh();
     } catch (err: any) {
       console.error(err);
       showToast(err.message || 'Failed to save config.', 'error');
