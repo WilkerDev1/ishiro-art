@@ -1,0 +1,17 @@
+# Ignore system binary directories copied into scratch
+chrome/
+opt/
+usr/
+etc/
+control.tar.xz
+dev.db
+
+# Standard ignores
+node_modules/
+.next/
+.vercel/
+.env
+.env.local
+.env.development
+.env.production
+.env.staging

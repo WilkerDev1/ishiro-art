@@ -1272,6 +1272,7 @@ export type ArtworkCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * The data used to create many Artworks.
    */
   data: Prisma.ArtworkCreateManyInput | Prisma.ArtworkCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1290,6 +1291,7 @@ export type ArtworkCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    * The data used to create many Artworks.
    */
   data: Prisma.ArtworkCreateManyInput | Prisma.ArtworkCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**

@@ -1116,6 +1116,7 @@ export type SocialLinkCreateManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * The data used to create many SocialLinks.
    */
   data: Prisma.SocialLinkCreateManyInput | Prisma.SocialLinkCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1134,6 +1135,7 @@ export type SocialLinkCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exte
    * The data used to create many SocialLinks.
    */
   data: Prisma.SocialLinkCreateManyInput | Prisma.SocialLinkCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**

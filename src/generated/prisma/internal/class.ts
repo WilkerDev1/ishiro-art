@@ -19,8 +19,8 @@ const config: runtime.GetPrismaClientConfig = {
   "previewFeatures": [],
   "clientVersion": "7.8.0",
   "engineVersion": "3c6e192761c0362d496ed980de936e2f3cebcd3a",
-  "activeProvider": "sqlite",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n}\n\nmodel Artwork {\n  id          String   @id @default(cuid())\n  title       String\n  description String?\n  imageUrl    String\n  category    String   @default(\"Illustrations\")\n  tags        String   @default(\"[]\")\n  featured    Boolean  @default(false)\n  order       Int      @default(0)\n  width       Int?\n  height      Int?\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n}\n\nmodel SocialLink {\n  id       String  @id @default(cuid())\n  platform String\n  url      String\n  label    String?\n  handle   String?\n  icon     String?\n  order    Int     @default(0)\n  visible  Boolean @default(true)\n}\n\nmodel SiteConfig {\n  id           String  @id @default(\"main\")\n  artistName   String  @default(\"ISHIRO\")\n  tagline      String  @default(\"Cute & Funny Artist\")\n  email        String? @default(\"ishiro@example.com\")\n  bio          String? @default(\"19 | Cute & Funny Artist | Commissions Open (DMs)\")\n  aboutText    String? @default(\"Drawing since childhood, now creating art full-time. Every piece tells a story—whether it's an original character, a vibrant illustration, or a love letter to my favourite anime.\")\n  stat1Value   String? @default(\"1.2K+\")\n  stat1Label   String? @default(\"Followers\")\n  stat2Value   String? @default(\"\")\n  stat2Label   String? @default(\"Artworks\")\n  stat3Value   String? @default(\"∞\")\n  stat3Label   String? @default(\"Passion\")\n  heroImageUrl String?\n  avatarUrl    String?\n}\n\nmodel Admin {\n  id       String @id @default(cuid())\n  username String @unique\n  password String\n}\n",
+  "activeProvider": "postgresql",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Artwork {\n  id          String   @id @default(cuid())\n  title       String\n  description String?\n  imageUrl    String\n  category    String   @default(\"Illustrations\")\n  tags        String   @default(\"[]\")\n  featured    Boolean  @default(false)\n  order       Int      @default(0)\n  width       Int?\n  height      Int?\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n}\n\nmodel SocialLink {\n  id       String  @id @default(cuid())\n  platform String\n  url      String\n  label    String?\n  handle   String?\n  icon     String?\n  order    Int     @default(0)\n  visible  Boolean @default(true)\n}\n\nmodel SiteConfig {\n  id           String  @id @default(\"main\")\n  artistName   String  @default(\"ISHIRO\")\n  tagline      String  @default(\"Cute & Funny Artist\")\n  email        String? @default(\"ishiro@example.com\")\n  bio          String? @default(\"19 | Cute & Funny Artist | Commissions Open (DMs)\")\n  aboutText    String? @default(\"Drawing since childhood, now creating art full-time. Every piece tells a story—whether it's an original character, a vibrant illustration, or a love letter to my favourite anime.\")\n  stat1Value   String? @default(\"1.2K+\")\n  stat1Label   String? @default(\"Followers\")\n  stat2Value   String? @default(\"\")\n  stat2Label   String? @default(\"Artworks\")\n  stat3Value   String? @default(\"∞\")\n  stat3Label   String? @default(\"Passion\")\n  heroImageUrl String?\n  avatarUrl    String?\n}\n\nmodel Admin {\n  id       String @id @default(cuid())\n  username String @unique\n  password String\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -45,10 +45,10 @@ async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Modul
 }
 
 config.compilerWasm = {
-  getRuntime: async () => await import("@prisma/client/runtime/query_compiler_fast_bg.sqlite.mjs"),
+  getRuntime: async () => await import("@prisma/client/runtime/query_compiler_fast_bg.postgresql.mjs"),
 
   getQueryCompilerWasmModule: async () => {
-    const { wasm } = await import("@prisma/client/runtime/query_compiler_fast_bg.sqlite.wasm-base64.mjs")
+    const { wasm } = await import("@prisma/client/runtime/query_compiler_fast_bg.postgresql.wasm-base64.mjs")
     return await decodeBase64AsWasm(wasm)
   },
 
