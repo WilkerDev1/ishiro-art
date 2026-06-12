@@ -2,6 +2,8 @@ import prisma from '@/lib/prisma';
 import GalleryClient from '@/components/GalleryClient';
 import type { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Gallery | ISHIRO_Art',
   description: 'Explore the artwork library of ISHIRO_Art. Cute & Funny illustrations, character designs, commissions, and sketches.',

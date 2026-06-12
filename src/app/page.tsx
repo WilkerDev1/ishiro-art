@@ -5,6 +5,8 @@ import FeaturedWorksSection from '@/components/FeaturedWorksSection';
 import CommissionsSection from '@/components/CommissionsSection';
 import ThemeColorExtractor from '@/components/ThemeColorExtractor';
 
+export const dynamic = 'force-dynamic';
+
 /* ─── Data Fetchers ──────────────────────────────────────────────────── */
 
 async function getSiteConfig() {
