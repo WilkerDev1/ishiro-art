@@ -260,6 +260,15 @@ ul, ol {
   position: absolute;
   inset: 0;
   z-index: 0;
+  background-position: right center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+  .hero__bg {
+    background-position: 75% center;
+  }
 }
 
 .hero__bg::after {

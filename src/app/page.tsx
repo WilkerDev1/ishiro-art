@@ -189,8 +189,11 @@ export default async function HomePage() {
         <div
           className="hero__bg"
           style={{
-            background: config?.heroImageUrl
-              ? `url(${config.heroImageUrl}) right center/cover no-repeat`
+            backgroundImage: config?.heroImageUrl
+              ? `url(${config.heroImageUrl})`
+              : 'none',
+            backgroundColor: config?.heroImageUrl
+              ? 'transparent'
               : 'var(--primary)',
           }}
         />
