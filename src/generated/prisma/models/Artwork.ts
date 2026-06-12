@@ -43,6 +43,7 @@ export type ArtworkMinAggregateOutputType = {
   title: string | null
   description: string | null
   imageUrl: string | null
+  thumbnailUrl: string | null
   category: string | null
   tags: string | null
   featured: boolean | null
@@ -58,6 +59,7 @@ export type ArtworkMaxAggregateOutputType = {
   title: string | null
   description: string | null
   imageUrl: string | null
+  thumbnailUrl: string | null
   category: string | null
   tags: string | null
   featured: boolean | null
@@ -73,6 +75,7 @@ export type ArtworkCountAggregateOutputType = {
   title: number
   description: number
   imageUrl: number
+  thumbnailUrl: number
   category: number
   tags: number
   featured: number
@@ -102,6 +105,7 @@ export type ArtworkMinAggregateInputType = {
   title?: true
   description?: true
   imageUrl?: true
+  thumbnailUrl?: true
   category?: true
   tags?: true
   featured?: true
@@ -117,6 +121,7 @@ export type ArtworkMaxAggregateInputType = {
   title?: true
   description?: true
   imageUrl?: true
+  thumbnailUrl?: true
   category?: true
   tags?: true
   featured?: true
@@ -132,6 +137,7 @@ export type ArtworkCountAggregateInputType = {
   title?: true
   description?: true
   imageUrl?: true
+  thumbnailUrl?: true
   category?: true
   tags?: true
   featured?: true
@@ -234,6 +240,7 @@ export type ArtworkGroupByOutputType = {
   title: string
   description: string | null
   imageUrl: string
+  thumbnailUrl: string | null
   category: string
   tags: string
   featured: boolean
@@ -272,6 +279,7 @@ export type ArtworkWhereInput = {
   title?: Prisma.StringFilter<"Artwork"> | string
   description?: Prisma.StringNullableFilter<"Artwork"> | string | null
   imageUrl?: Prisma.StringFilter<"Artwork"> | string
+  thumbnailUrl?: Prisma.StringNullableFilter<"Artwork"> | string | null
   category?: Prisma.StringFilter<"Artwork"> | string
   tags?: Prisma.StringFilter<"Artwork"> | string
   featured?: Prisma.BoolFilter<"Artwork"> | boolean
@@ -287,6 +295,7 @@ export type ArtworkOrderByWithRelationInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
+  thumbnailUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.SortOrder
   tags?: Prisma.SortOrder
   featured?: Prisma.SortOrder
@@ -305,6 +314,7 @@ export type ArtworkWhereUniqueInput = Prisma.AtLeast<{
   title?: Prisma.StringFilter<"Artwork"> | string
   description?: Prisma.StringNullableFilter<"Artwork"> | string | null
   imageUrl?: Prisma.StringFilter<"Artwork"> | string
+  thumbnailUrl?: Prisma.StringNullableFilter<"Artwork"> | string | null
   category?: Prisma.StringFilter<"Artwork"> | string
   tags?: Prisma.StringFilter<"Artwork"> | string
   featured?: Prisma.BoolFilter<"Artwork"> | boolean
@@ -320,6 +330,7 @@ export type ArtworkOrderByWithAggregationInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
+  thumbnailUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.SortOrder
   tags?: Prisma.SortOrder
   featured?: Prisma.SortOrder
@@ -343,6 +354,7 @@ export type ArtworkScalarWhereWithAggregatesInput = {
   title?: Prisma.StringWithAggregatesFilter<"Artwork"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Artwork"> | string | null
   imageUrl?: Prisma.StringWithAggregatesFilter<"Artwork"> | string
+  thumbnailUrl?: Prisma.StringNullableWithAggregatesFilter<"Artwork"> | string | null
   category?: Prisma.StringWithAggregatesFilter<"Artwork"> | string
   tags?: Prisma.StringWithAggregatesFilter<"Artwork"> | string
   featured?: Prisma.BoolWithAggregatesFilter<"Artwork"> | boolean
@@ -358,6 +370,7 @@ export type ArtworkCreateInput = {
   title: string
   description?: string | null
   imageUrl: string
+  thumbnailUrl?: string | null
   category?: string
   tags?: string
   featured?: boolean
@@ -373,6 +386,7 @@ export type ArtworkUncheckedCreateInput = {
   title: string
   description?: string | null
   imageUrl: string
+  thumbnailUrl?: string | null
   category?: string
   tags?: string
   featured?: boolean
@@ -388,6 +402,7 @@ export type ArtworkUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.StringFieldUpdateOperationsInput | string
   tags?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -403,6 +418,7 @@ export type ArtworkUncheckedUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.StringFieldUpdateOperationsInput | string
   tags?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -418,6 +434,7 @@ export type ArtworkCreateManyInput = {
   title: string
   description?: string | null
   imageUrl: string
+  thumbnailUrl?: string | null
   category?: string
   tags?: string
   featured?: boolean
@@ -433,6 +450,7 @@ export type ArtworkUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.StringFieldUpdateOperationsInput | string
   tags?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -448,6 +466,7 @@ export type ArtworkUncheckedUpdateManyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.StringFieldUpdateOperationsInput | string
   tags?: Prisma.StringFieldUpdateOperationsInput | string
   featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -463,6 +482,7 @@ export type ArtworkCountOrderByAggregateInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
+  thumbnailUrl?: Prisma.SortOrder
   category?: Prisma.SortOrder
   tags?: Prisma.SortOrder
   featured?: Prisma.SortOrder
@@ -484,6 +504,7 @@ export type ArtworkMaxOrderByAggregateInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
+  thumbnailUrl?: Prisma.SortOrder
   category?: Prisma.SortOrder
   tags?: Prisma.SortOrder
   featured?: Prisma.SortOrder
@@ -499,6 +520,7 @@ export type ArtworkMinOrderByAggregateInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
+  thumbnailUrl?: Prisma.SortOrder
   category?: Prisma.SortOrder
   tags?: Prisma.SortOrder
   featured?: Prisma.SortOrder
@@ -554,6 +576,7 @@ export type ArtworkSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   title?: boolean
   description?: boolean
   imageUrl?: boolean
+  thumbnailUrl?: boolean
   category?: boolean
   tags?: boolean
   featured?: boolean
@@ -569,6 +592,7 @@ export type ArtworkSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   title?: boolean
   description?: boolean
   imageUrl?: boolean
+  thumbnailUrl?: boolean
   category?: boolean
   tags?: boolean
   featured?: boolean
@@ -584,6 +608,7 @@ export type ArtworkSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   title?: boolean
   description?: boolean
   imageUrl?: boolean
+  thumbnailUrl?: boolean
   category?: boolean
   tags?: boolean
   featured?: boolean
@@ -599,6 +624,7 @@ export type ArtworkSelectScalar = {
   title?: boolean
   description?: boolean
   imageUrl?: boolean
+  thumbnailUrl?: boolean
   category?: boolean
   tags?: boolean
   featured?: boolean
@@ -609,7 +635,7 @@ export type ArtworkSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ArtworkOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "imageUrl" | "category" | "tags" | "featured" | "order" | "width" | "height" | "createdAt" | "updatedAt", ExtArgs["result"]["artwork"]>
+export type ArtworkOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "imageUrl" | "thumbnailUrl" | "category" | "tags" | "featured" | "order" | "width" | "height" | "createdAt" | "updatedAt", ExtArgs["result"]["artwork"]>
 
 export type $ArtworkPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Artwork"
@@ -619,6 +645,7 @@ export type $ArtworkPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     title: string
     description: string | null
     imageUrl: string
+    thumbnailUrl: string | null
     category: string
     tags: string
     featured: boolean
@@ -1054,6 +1081,7 @@ export interface ArtworkFieldRefs {
   readonly title: Prisma.FieldRef<"Artwork", 'String'>
   readonly description: Prisma.FieldRef<"Artwork", 'String'>
   readonly imageUrl: Prisma.FieldRef<"Artwork", 'String'>
+  readonly thumbnailUrl: Prisma.FieldRef<"Artwork", 'String'>
   readonly category: Prisma.FieldRef<"Artwork", 'String'>
   readonly tags: Prisma.FieldRef<"Artwork", 'String'>
   readonly featured: Prisma.FieldRef<"Artwork", 'Boolean'>

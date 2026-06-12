@@ -91,7 +91,11 @@ export default function GalleryClient({ artworks }: GalleryClientProps) {
                     onClick={() => setLightboxArtwork(art)}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={art.imageUrl} alt={art.title} loading="lazy" />
+                    <img
+                      src={art.thumbnailUrl ?? art.imageUrl}
+                      alt={art.title}
+                      loading="lazy"
+                    />
                     <div className="gallery__card-overlay">
                       <div className="gallery__card-title">{art.title}</div>
                       <div className="gallery__card-category">{art.category}</div>

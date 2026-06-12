@@ -25,7 +25,7 @@ export async function PUT(
       return NextResponse.json({ error: `Artwork not found for ID: ${id}` }, { status: 404 });
     }
 
-    const { title, description, imageUrl, category, tags, featured, order } = body;
+    const { title, description, imageUrl, thumbnailUrl, category, tags, featured, order } = body;
 
     const artwork = await prisma.artwork.update({
       where: { id },
@@ -33,6 +33,7 @@ export async function PUT(
         ...(title !== undefined && { title }),
         ...(description !== undefined && { description }),
         ...(imageUrl !== undefined && { imageUrl }),
+        ...(thumbnailUrl !== undefined && { thumbnailUrl }),
         ...(category !== undefined && { category }),
         ...(tags !== undefined && { tags: typeof tags === 'string' ? tags : JSON.stringify(tags) }),
         ...(featured !== undefined && { featured }),

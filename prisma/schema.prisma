@@ -12,6 +12,7 @@ model Artwork {
   title       String
   description String?
   imageUrl    String
+  thumbnailUrl String?
   category    String   @default("Illustrations")
   tags        String   @default("[]")
   featured    Boolean  @default(false)
