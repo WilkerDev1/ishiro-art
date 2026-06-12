@@ -105,6 +105,7 @@ export default function AdminDashboard({
       // 1. Upload the image file
       const formData = new FormData();
       formData.append('file', uploadFile);
+      formData.append('type', 'artwork'); // tells the server to generate a thumbnail
 
       const uploadRes = await fetch('/api/upload', {
         method: 'POST',
@@ -115,7 +116,7 @@ export default function AdminDashboard({
         throw new Error('Failed to upload image file.');
       }
 
-      const { url } = await uploadRes.json();
+      const { url, thumbnailUrl } = await uploadRes.json();
 
       // 2. Create the artwork db record
       const tagsArray = uploadData.tags
@@ -130,6 +131,7 @@ export default function AdminDashboard({
           title: uploadData.title,
           description: uploadData.description,
           imageUrl: url,
+          thumbnailUrl: thumbnailUrl || null,
           category: uploadData.category,
           tags: JSON.stringify(tagsArray),
           featured: uploadData.featured,
@@ -404,6 +406,7 @@ export default function AdminDashboard({
     try {
       const formData = new FormData();
       formData.append('file', file);
+      formData.append('type', 'avatar'); // skip thumbnail generation
 
       const res = await fetch('/api/upload', {
         method: 'POST',
@@ -431,6 +434,7 @@ export default function AdminDashboard({
     try {
       const formData = new FormData();
       formData.append('file', file);
+      formData.append('type', 'hero'); // skip thumbnail generation
 
       const res = await fetch('/api/upload', {
         method: 'POST',
