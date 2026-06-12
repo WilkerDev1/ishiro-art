@@ -378,6 +378,20 @@ ul, ol {
   position: relative;
 }
 
+@media (max-width: 768px) {
+  .section-title {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-lg);
+  }
+}
+
 .section-title::after {
   content: '';
   display: block;
@@ -707,6 +721,12 @@ ul, ol {
 .gallery {
   padding: var(--space-4xl) var(--space-2xl);
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    padding: var(--space-2xl) var(--space-md);
+  }
 }
 
 .gallery__filters {
@@ -1172,6 +1192,12 @@ ul, ol {
   overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  .about {
+    padding: var(--space-2xl) var(--space-md);
+  }
+}
+
 .about__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1259,6 +1285,12 @@ ul, ol {
   position: relative;
 }
 
+@media (max-width: 768px) {
+  .contact {
+    padding: var(--space-2xl) var(--space-md);
+  }
+}
+
 .contact__email {
   font-family: var(--font-display);
   font-size: var(--text-3xl);
@@ -1266,6 +1298,20 @@ ul, ol {
   color: var(--primary);
   transition: all var(--transition-base);
   display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .contact__email {
+    font-size: var(--text-xl);
+    word-break: break-all;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact__email {
+    font-size: var(--text-lg);
+  }
 }
 
 .contact__email:hover {
