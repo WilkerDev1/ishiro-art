@@ -164,7 +164,7 @@ export default function FeaturedWorksSection({ artworks }: FeaturedWorksSectionP
               >
                 {hasImage ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={work.imageUrl} alt={work.title} loading="lazy" />
+                  <img src={work.thumbnailUrl ?? work.imageUrl} alt={work.title} loading="lazy" />
                 ) : (
                   <div
                     style={{

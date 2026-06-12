@@ -78,6 +78,7 @@ export const ArtworkScalarFieldEnum = {
   title: 'title',
   description: 'description',
   imageUrl: 'imageUrl',
+  thumbnailUrl: 'thumbnailUrl',
   category: 'category',
   tags: 'tags',
   featured: 'featured',

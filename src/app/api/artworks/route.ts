@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { title, description, imageUrl, category, tags, featured } = body;
+    const { title, description, imageUrl, thumbnailUrl, category, tags, featured } = body;
 
     if (!title || !imageUrl) {
       return NextResponse.json({ error: 'Title and image URL are required' }, { status: 400 });
@@ -38,6 +38,7 @@ export async function POST(request: NextRequest) {
         title,
         description: description || null,
         imageUrl,
+        thumbnailUrl: thumbnailUrl || null,
         category: category || 'Illustrations',
         tags: typeof tags === 'string' ? tags : JSON.stringify(tags || []),
         featured: featured || false,

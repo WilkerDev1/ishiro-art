@@ -123,11 +123,11 @@ const FALLBACK_SOCIAL_LINKS = [
 import type { Artwork } from '@/generated/prisma/client';
 
 const FALLBACK_FEATURED: Artwork[] = [
-  { id: '1', title: 'Summer Bloom', description: null, imageUrl: '', category: 'Illustrations', tags: '[]', featured: true, order: 1, width: null, height: null, createdAt: new Date(), updatedAt: new Date() },
-  { id: '2', title: 'Midnight Shrine', description: null, imageUrl: '', category: 'Fanart', tags: '[]', featured: true, order: 2, width: null, height: null, createdAt: new Date(), updatedAt: new Date() },
-  { id: '3', title: 'Cherry Blossom OC', description: null, imageUrl: '', category: 'Original Characters', tags: '[]', featured: true, order: 3, width: null, height: null, createdAt: new Date(), updatedAt: new Date() },
-  { id: '4', title: 'Neon City Girl', description: null, imageUrl: '', category: 'Illustrations', tags: '[]', featured: true, order: 4, width: null, height: null, createdAt: new Date(), updatedAt: new Date() },
-  { id: '5', title: 'Autumn Spirit', description: null, imageUrl: '', category: 'Original Characters', tags: '[]', featured: true, order: 5, width: null, height: null, createdAt: new Date(), updatedAt: new Date() },
+  { id: '1', title: 'Summer Bloom', description: null, imageUrl: '', thumbnailUrl: null, category: 'Illustrations', tags: '[]', featured: true, order: 1, width: null, height: null, createdAt: new Date(), updatedAt: new Date() },
+  { id: '2', title: 'Midnight Shrine', description: null, imageUrl: '', thumbnailUrl: null, category: 'Fanart', tags: '[]', featured: true, order: 2, width: null, height: null, createdAt: new Date(), updatedAt: new Date() },
+  { id: '3', title: 'Cherry Blossom OC', description: null, imageUrl: '', thumbnailUrl: null, category: 'Original Characters', tags: '[]', featured: true, order: 3, width: null, height: null, createdAt: new Date(), updatedAt: new Date() },
+  { id: '4', title: 'Neon City Girl', description: null, imageUrl: '', thumbnailUrl: null, category: 'Illustrations', tags: '[]', featured: true, order: 4, width: null, height: null, createdAt: new Date(), updatedAt: new Date() },
+  { id: '5', title: 'Autumn Spirit', description: null, imageUrl: '', thumbnailUrl: null, category: 'Original Characters', tags: '[]', featured: true, order: 5, width: null, height: null, createdAt: new Date(), updatedAt: new Date() },
 ];
 
 const FEATURED_GRADIENTS = [
