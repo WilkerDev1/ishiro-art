@@ -939,6 +939,8 @@ ul, ol {
 .featured__card,
 .commissions__card {
   flex: 0 0 350px;
+  width: 350px; /* Explicit width to prevent layout collapsing under flex-end alignment */
+  min-width: 350px; /* Force the width to prevent collapsing under flex-end */
   scroll-snap-align: start;
   border-radius: 0;
   overflow: hidden;
@@ -1018,6 +1020,45 @@ ul, ol {
     display: none;
   }
 }
+
+.carousel-nav-header {
+  display: flex;
+  gap: var(--space-sm);
+  z-index: 10;
+}
+
+.carousel-btn-nav-header {
+  width: 44px;
+  height: 44px;
+  background: var(--dark-surface);
+  border: 3px solid var(--dark);
+  box-shadow: 4px 4px 0px var(--dark);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.carousel-btn-nav-header:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--dark);
+  background: var(--primary);
+  color: var(--dark);
+}
+
+.carousel-btn-nav-header:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--dark);
+}
+
+@media (max-width: 768px) {
+  .carousel-nav-header {
+    display: none;
+  }
+}
+
 
 .carousel-dots {
   display: flex;

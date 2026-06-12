@@ -120,32 +120,34 @@ export default function CommissionsSection({ artworks }: CommissionsSectionProps
 
   return (
     <section id="commissions" className="commissions-section section" style={{ background: 'var(--primary)', color: 'var(--dark)' }}>
-      <div className="container">
-        <h2 className="section-title" style={{ color: 'var(--dark)', marginBottom: 'var(--space-xl)' }}>
+      <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-xl)' }}>
+        <h2 className="section-title" style={{ color: 'var(--dark)', marginBottom: 0 }}>
           COMMISSION SAMPLES
         </h2>
+        {artworks.length > 1 && (
+          <div className="carousel-nav-header">
+            <button
+              className="carousel-btn-nav-header"
+              onClick={handlePrev}
+              aria-label="Previous commission artwork"
+              style={{ color: 'var(--dark)' }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            </button>
+            <button
+              className="carousel-btn-nav-header"
+              onClick={handleNext}
+              aria-label="Next commission artwork"
+              style={{ color: 'var(--dark)' }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+          </div>
+        )}
+      </div>
 
-        {/* Carousel Track */}
-        <div className="carousel-container">
-          {/* Navigation Arrows */}
-          {artworks.length > 1 && (
-            <>
-              <button
-                className="carousel-btn-nav carousel-btn-nav--prev"
-                onClick={handlePrev}
-                aria-label="Previous commission artwork"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-              </button>
-              <button
-                className="carousel-btn-nav carousel-btn-nav--next"
-                onClick={handleNext}
-                aria-label="Next commission artwork"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </button>
-            </>
-          )}
+      {/* Carousel Track */}
+      <div className="carousel-container">
 
           <div
             ref={trackRef}
@@ -199,7 +201,6 @@ export default function CommissionsSection({ artworks }: CommissionsSectionProps
             </div>
           )}
         </div>
-      </div>
 
       {/* Lightbox Modal rendered via Portal */}
       {mounted && typeof window !== 'undefined' && createPortal(

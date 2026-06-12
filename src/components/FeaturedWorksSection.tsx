@@ -128,27 +128,31 @@ export default function FeaturedWorksSection({ artworks }: FeaturedWorksSectionP
 
   return (
     <>
-      <div className="carousel-container">
-        {/* Navigation Arrows */}
+      <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-xl)' }}>
+        <h2 className="section-title" style={{ marginBottom: 0 }}>
+          FEATURED WORKS
+        </h2>
         {artworks.length > 1 && (
-          <>
+          <div className="carousel-nav-header">
             <button
-              className="carousel-btn-nav carousel-btn-nav--prev"
+              className="carousel-btn-nav-header"
               onClick={handlePrev}
               aria-label="Previous featured artwork"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
             </button>
             <button
-              className="carousel-btn-nav carousel-btn-nav--next"
+              className="carousel-btn-nav-header"
               onClick={handleNext}
               aria-label="Next featured artwork"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </button>
-          </>
+          </div>
         )}
+      </div>
 
+      <div className="carousel-container">
         <div ref={trackRef} className="featured__track">
           {artworks.map((work, i) => {
             const hasImage = work.imageUrl;

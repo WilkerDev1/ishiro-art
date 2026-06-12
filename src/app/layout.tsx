@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Archivo_Black, Space_Grotesk, Inter } from 'next/font/google';
 import Sidebar from '@/components/Sidebar';
 import MobileNav from '@/components/MobileNav';
+import Script from 'next/script';
 import './globals.css';
 
 const archivoBlack = Archivo_Black({
@@ -57,23 +58,21 @@ export default function RootLayout({
       className={`${archivoBlack.variable} ${spaceGrotesk.variable} ${inter.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        <script
+      <body className="noise-overlay">
+        <Script
+          id="theme-initializer"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              (function() {
-                try {
-                  var savedColor = localStorage.getItem('theme-primary-color');
-                  if (savedColor) {
-                    document.documentElement.style.setProperty('--primary', savedColor);
-                  }
-                } catch (e) {}
-              })();
+              try {
+                var savedColor = localStorage.getItem('theme-primary-color');
+                if (savedColor) {
+                  document.documentElement.style.setProperty('--primary', savedColor);
+                }
+              } catch (e) {}
             `,
           }}
         />
-      </head>
-      <body className="noise-overlay">
         <Sidebar />
         <MobileNav />
         <main className="page-wrapper">{children}</main>

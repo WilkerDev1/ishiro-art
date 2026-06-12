@@ -311,12 +311,6 @@ export default async function HomePage() {
 
       {/* ═══════════════ FEATURED WORKS ═══════════════ */}
       <section id="featured" className="section">
-        <div className="container">
-          <ScrollReveal>
-            <h2 className="section-title">FEATURED WORKS</h2>
-          </ScrollReveal>
-        </div>
-
         <ScrollReveal animation="reveal-scale">
           <FeaturedWorksSection artworks={featured} />
         </ScrollReveal>
