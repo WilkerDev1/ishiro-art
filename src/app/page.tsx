@@ -214,7 +214,7 @@ export default async function HomePage() {
           </ScrollReveal>
 
           <ScrollReveal animation="reveal" delay={600}>
-            <div style={{ marginTop: 'var(--space-xl)', display: 'flex', gap: 'var(--space-md)' }}>
+            <div className="hero__actions">
               <a href="#featured" className="btn btn--primary">
                 View Gallery
               </a>

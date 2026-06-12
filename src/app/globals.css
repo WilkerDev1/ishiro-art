@@ -124,6 +124,8 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scrollbar-color: var(--primary) var(--dark-surface);
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -133,6 +135,7 @@ body {
   color: var(--text-primary);
   background-color: var(--dark);
   overflow-x: hidden;
+  width: 100%;
   min-height: 100vh;
 }
 
@@ -223,6 +226,12 @@ ul, ol {
 @media (max-width: 768px) {
   .page-wrapper {
     padding-left: 0;
+  }
+  .section {
+    padding: var(--space-2xl) var(--space-md);
+  }
+  .container {
+    padding: 0 var(--space-sm);
   }
 }
 
@@ -326,6 +335,36 @@ ul, ol {
   color: #000000;
   margin-top: var(--space-md);
   max-width: 500px;
+}
+
+.hero__actions {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+@media (max-width: 576px) {
+  .hero__title {
+    font-size: clamp(2.8rem, 14vw, 4.5rem);
+  }
+  .hero__subtitle {
+    font-size: var(--text-lg);
+    letter-spacing: 0.08em;
+    margin-top: var(--space-md);
+  }
+  .hero__tagline {
+    font-size: var(--text-base);
+    margin-top: var(--space-sm);
+  }
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+    gap: var(--space-sm);
+  }
+  .hero__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* ---------- Section Titles ---------- */
@@ -932,6 +971,8 @@ ul, ol {
   .commissions__track {
     padding-left: var(--space-lg);
     padding-right: var(--space-lg);
+    width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -975,6 +1016,7 @@ ul, ol {
 .carousel-container {
   position: relative;
   width: 100%;
+  overflow: hidden;
 }
 
 .carousel-btn-nav {
@@ -1188,6 +1230,13 @@ ul, ol {
   margin-top: var(--space-2xl);
   padding-top: var(--space-xl);
   border-top: 1px solid var(--dark-border);
+}
+
+@media (max-width: 576px) {
+  .about__stats {
+    gap: var(--space-lg);
+    justify-content: space-between;
+  }
 }
 
 .about__stat-value {
