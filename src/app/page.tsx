@@ -3,6 +3,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import { iconMap, ArrowUpRightIcon } from '@/components/icons/SocialIcons';
 import FeaturedWorksSection from '@/components/FeaturedWorksSection';
 import CommissionsSection from '@/components/CommissionsSection';
+import ThemeColorExtractor from '@/components/ThemeColorExtractor';
 
 /* ─── Data Fetchers ──────────────────────────────────────────────────── */
 
@@ -167,6 +168,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <ThemeColorExtractor imageUrl={config?.heroImageUrl} />
       {/* ═══════════════ HERO ═══════════════ */}
       <section id="hero" className="hero">
         {/* Gradient background (no uploaded hero image yet) */}

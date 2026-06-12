@@ -56,6 +56,22 @@ export default function RootLayout({
       lang="en"
       className={`${archivoBlack.variable} ${spaceGrotesk.variable} ${inter.variable}`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var savedColor = localStorage.getItem('theme-primary-color');
+                  if (savedColor) {
+                    document.documentElement.style.setProperty('--primary', savedColor);
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="noise-overlay">
         <Sidebar />
         <MobileNav />
