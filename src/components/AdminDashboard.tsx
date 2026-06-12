@@ -372,6 +372,13 @@ export default function AdminDashboard({
     tagline: siteConfig.tagline,
     email: siteConfig.email || '',
     bio: siteConfig.bio || '',
+    aboutText: siteConfig.aboutText || '',
+    stat1Value: siteConfig.stat1Value || '',
+    stat1Label: siteConfig.stat1Label || '',
+    stat2Value: siteConfig.stat2Value || '',
+    stat2Label: siteConfig.stat2Label || '',
+    stat3Value: siteConfig.stat3Value || '',
+    stat3Label: siteConfig.stat3Label || '',
     avatarUrl: siteConfig.avatarUrl || '',
     heroImageUrl: siteConfig.heroImageUrl || '',
   });
@@ -447,6 +454,13 @@ export default function AdminDashboard({
           tagline: configData.tagline,
           email: configData.email || null,
           bio: configData.bio || null,
+          aboutText: configData.aboutText || null,
+          stat1Value: configData.stat1Value,
+          stat1Label: configData.stat1Label,
+          stat2Value: configData.stat2Value,
+          stat2Label: configData.stat2Label,
+          stat3Value: configData.stat3Value,
+          stat3Label: configData.stat3Label,
           avatarUrl: configData.avatarUrl || null,
           heroImageUrl: configData.heroImageUrl || null,
         }),
@@ -1142,14 +1156,93 @@ export default function AdminDashboard({
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">Profile Biography (Markdown supported)</label>
+                  <label className="form-label">Profile Biography / Tagline Detail (Markdown supported)</label>
                   <textarea
                     className="form-textarea"
                     value={configData.bio}
                     onChange={(e) => setConfigData((prev) => ({ ...prev, bio: e.target.value }))}
-                    rows={6}
+                    rows={4}
                     placeholder="Write a short introduction, status, commission details..."
                   />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Detailed "About" Description</label>
+                  <textarea
+                    className="form-textarea"
+                    value={configData.aboutText}
+                    onChange={(e) => setConfigData((prev) => ({ ...prev, aboutText: e.target.value }))}
+                    rows={4}
+                    placeholder="Drawing since childhood, now creating art full-time..."
+                  />
+                </div>
+
+                <div style={{ margin: 'var(--space-md) 0 var(--space-lg) 0' }}>
+                  <h3 style={{ fontSize: 'var(--text-sm)', marginBottom: 'var(--space-sm)', textTransform: 'uppercase', fontFamily: 'var(--font-heading)', color: 'var(--text-secondary)' }}>
+                    Statistics (Homepage About Section)
+                  </h3>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 'var(--space-md)' }}>
+                    {/* Stat 1 */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)', padding: 'var(--space-sm)', border: '1px solid var(--dark-border)', borderRadius: 'var(--radius-sm)', background: 'var(--dark-elevated)' }}>
+                      <label className="form-label" style={{ fontSize: 'var(--text-xs)', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Stat 1</label>
+                      <input
+                        className="form-input"
+                        type="text"
+                        value={configData.stat1Value}
+                        onChange={(e) => setConfigData((prev) => ({ ...prev, stat1Value: e.target.value }))}
+                        placeholder="Value (e.g. 1.2K+)"
+                        style={{ padding: '6px', fontSize: 'var(--text-sm)' }}
+                      />
+                      <input
+                        className="form-input"
+                        type="text"
+                        value={configData.stat1Label}
+                        onChange={(e) => setConfigData((prev) => ({ ...prev, stat1Label: e.target.value }))}
+                        placeholder="Label (e.g. Followers)"
+                        style={{ padding: '6px', fontSize: 'var(--text-sm)' }}
+                      />
+                    </div>
+                    {/* Stat 2 */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)', padding: 'var(--space-sm)', border: '1px solid var(--dark-border)', borderRadius: 'var(--radius-sm)', background: 'var(--dark-elevated)' }}>
+                      <label className="form-label" style={{ fontSize: 'var(--text-xs)', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Stat 2</label>
+                      <input
+                        className="form-input"
+                        type="text"
+                        value={configData.stat2Value}
+                        onChange={(e) => setConfigData((prev) => ({ ...prev, stat2Value: e.target.value }))}
+                        placeholder="Value (empty = dynamic)"
+                        style={{ padding: '6px', fontSize: 'var(--text-sm)' }}
+                      />
+                      <input
+                        className="form-input"
+                        type="text"
+                        value={configData.stat2Label}
+                        onChange={(e) => setConfigData((prev) => ({ ...prev, stat2Label: e.target.value }))}
+                        placeholder="Label (e.g. Artworks)"
+                        style={{ padding: '6px', fontSize: 'var(--text-sm)' }}
+                      />
+                    </div>
+                    {/* Stat 3 */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)', padding: 'var(--space-sm)', border: '1px solid var(--dark-border)', borderRadius: 'var(--radius-sm)', background: 'var(--dark-elevated)' }}>
+                      <label className="form-label" style={{ fontSize: 'var(--text-xs)', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Stat 3</label>
+                      <input
+                        className="form-input"
+                        type="text"
+                        value={configData.stat3Value}
+                        onChange={(e) => setConfigData((prev) => ({ ...prev, stat3Value: e.target.value }))}
+                        placeholder="Value (e.g. ∞)"
+                        style={{ padding: '6px', fontSize: 'var(--text-sm)' }}
+                      />
+                      <input
+                        className="form-input"
+                        type="text"
+                        value={configData.stat3Label}
+                        onChange={(e) => setConfigData((prev) => ({ ...prev, stat3Label: e.target.value }))}
+                        placeholder="Label (e.g. Passion)"
+                        style={{ padding: '6px', fontSize: 'var(--text-sm)' }}
+                      />
+                    </div>
+                  </div>
                 </div>
 
                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-md)' }}>

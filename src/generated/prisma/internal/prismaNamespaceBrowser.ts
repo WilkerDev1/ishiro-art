@@ -108,6 +108,13 @@ export const SiteConfigScalarFieldEnum = {
   tagline: 'tagline',
   email: 'email',
   bio: 'bio',
+  aboutText: 'aboutText',
+  stat1Value: 'stat1Value',
+  stat1Label: 'stat1Label',
+  stat2Value: 'stat2Value',
+  stat2Label: 'stat2Label',
+  stat3Value: 'stat3Value',
+  stat3Label: 'stat3Label',
   heroImageUrl: 'heroImageUrl',
   avatarUrl: 'avatarUrl'
 } as const

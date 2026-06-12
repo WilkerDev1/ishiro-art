@@ -155,6 +155,18 @@ export default async function HomePage() {
   const bio =
     config?.bio ??
     'Digital artist specializing in cute & funny illustrations, character designs, and fanart. Inspired by anime, manga, and Japanese pop culture.';
+  const aboutText =
+    config?.aboutText ??
+    'Drawing since childhood, now creating art full-time. Every piece tells a story—whether it\'s an original character, a vibrant illustration, or a love letter to my favourite anime.';
+
+  const stat1Value = config?.stat1Value ?? '1.2K+';
+  const stat1Label = config?.stat1Label ?? 'Followers';
+  const stat2Value = config?.stat2Value
+    ? config.stat2Value
+    : `${artworkCount > 0 ? artworkCount : '50'}+`;
+  const stat2Label = config?.stat2Label ?? 'Artworks';
+  const stat3Value = config?.stat3Value ?? '∞';
+  const stat3Label = config?.stat3Label ?? 'Passion';
 
   const socials =
     socialLinks.length > 0 ? socialLinks : FALLBACK_SOCIAL_LINKS;
@@ -352,26 +364,20 @@ export default async function HomePage() {
                 ABOUT <span className="text-gradient">{artistName}</span>
               </h2>
               <p>{bio}</p>
-              <p>
-                Drawing since childhood, now creating art full-time. Every piece
-                tells a story—whether it's an original character, a vibrant
-                illustration, or a love letter to my favourite anime.
-              </p>
+              {aboutText && <p>{aboutText}</p>}
 
               <div className="about__stats">
                 <div>
-                  <div className="about__stat-value">1.2K+</div>
-                  <div className="about__stat-label">Followers</div>
+                  <div className="about__stat-value">{stat1Value}</div>
+                  <div className="about__stat-label">{stat1Label}</div>
                 </div>
                 <div>
-                  <div className="about__stat-value">
-                    {artworkCount > 0 ? artworkCount : '50'}+
-                  </div>
-                  <div className="about__stat-label">Artworks</div>
+                  <div className="about__stat-value">{stat2Value}</div>
+                  <div className="about__stat-label">{stat2Label}</div>
                 </div>
                 <div>
-                  <div className="about__stat-value">∞</div>
-                  <div className="about__stat-label">Passion</div>
+                  <div className="about__stat-value">{stat3Value}</div>
+                  <div className="about__stat-label">{stat3Label}</div>
                 </div>
               </div>
             </div>

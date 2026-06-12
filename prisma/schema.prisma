@@ -39,6 +39,13 @@ model SiteConfig {
   tagline      String  @default("Cute & Funny Artist")
   email        String? @default("ishiro@example.com")
   bio          String? @default("19 | Cute & Funny Artist | Commissions Open (DMs)")
+  aboutText    String? @default("Drawing since childhood, now creating art full-time. Every piece tells a story—whether it's an original character, a vibrant illustration, or a love letter to my favourite anime.")
+  stat1Value   String? @default("1.2K+")
+  stat1Label   String? @default("Followers")
+  stat2Value   String? @default("")
+  stat2Label   String? @default("Artworks")
+  stat3Value   String? @default("∞")
+  stat3Label   String? @default("Passion")
   heroImageUrl String?
   avatarUrl    String?
 }

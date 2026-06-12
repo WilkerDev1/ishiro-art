@@ -33,6 +33,13 @@ export default async function AdminPage() {
         tagline: 'Cute & Funny Artist',
         email: 'ishiro@example.com',
         bio: '19 | Cute & Funny Artist | Commissions Open (DMs)',
+        aboutText: 'Drawing since childhood, now creating art full-time. Every piece tells a story—whether it\'s an original character, a vibrant illustration, or a love letter to my favourite anime.',
+        stat1Value: '1.2K+',
+        stat1Label: 'Followers',
+        stat2Value: '',
+        stat2Label: 'Artworks',
+        stat3Value: '∞',
+        stat3Label: 'Passion',
         heroImageUrl: null,
         avatarUrl: null,
       }}
