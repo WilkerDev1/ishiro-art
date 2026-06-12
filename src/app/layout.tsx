@@ -55,6 +55,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${archivoBlack.variable} ${spaceGrotesk.variable} ${inter.variable}`}
+      suppressHydrationWarning
     >
       <head>
         <script
