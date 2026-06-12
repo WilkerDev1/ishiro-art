@@ -913,13 +913,13 @@ ul, ol {
 .featured__track,
 .commissions__track {
   display: flex;
+  align-items: flex-end; /* Align cards at the bottom of the track */
   gap: var(--space-xl);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: var(--space-md) var(--space-2xl) var(--space-2xl) var(--space-2xl);
-  padding-left: calc(var(--sidebar-width) + var(--space-2xl));
+  padding: var(--space-md) calc(48px + var(--space-md)) var(--space-2xl) calc(var(--sidebar-width) + 48px + var(--space-md));
 }
 
 .featured__track::-webkit-scrollbar,
@@ -931,6 +931,7 @@ ul, ol {
   .featured__track,
   .commissions__track {
     padding-left: var(--space-lg);
+    padding-right: var(--space-lg);
   }
 }
 
@@ -1005,20 +1006,14 @@ ul, ol {
 }
 
 .carousel-btn-nav--prev {
-  left: calc(var(--sidebar-width) + var(--space-md));
+  left: calc(var(--sidebar-width) + var(--space-sm));
 }
 
 .carousel-btn-nav--next {
-  right: var(--space-md);
+  right: var(--space-sm);
 }
 
 @media (max-width: 768px) {
-  .carousel-btn-nav--prev {
-    left: var(--space-sm);
-  }
-  .carousel-btn-nav--next {
-    right: var(--space-sm);
-  }
   .carousel-btn-nav {
     display: none;
   }

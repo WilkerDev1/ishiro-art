@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import type { Artwork } from '@/generated/prisma/client';
 
 interface CommissionsSectionProps {
@@ -10,7 +11,13 @@ interface CommissionsSectionProps {
 export default function CommissionsSection({ artworks }: CommissionsSectionProps) {
   const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mounted, setMounted] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Monitor scroll position to update dots
   useEffect(() => {
@@ -194,55 +201,91 @@ export default function CommissionsSection({ artworks }: CommissionsSectionProps
         </div>
       </div>
 
-      {/* Lightbox Modal */}
-      <div
-        className={`lightbox ${selectedArtwork ? 'open' : ''}`}
-        onClick={() => setSelectedArtwork(null)}
-        aria-hidden={!selectedArtwork}
-      >
-        <button
-          className="lightbox__close"
+      {/* Lightbox Modal rendered via Portal */}
+      {mounted && typeof window !== 'undefined' && createPortal(
+        <div
+          className={`lightbox ${selectedArtwork ? 'open' : ''}`}
           onClick={() => setSelectedArtwork(null)}
-          aria-label="Close lightbox"
+          aria-hidden={!selectedArtwork}
         >
-          &times;
-        </button>
-        {selectedArtwork && (
-          <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="lightbox__image"
-              src={selectedArtwork.imageUrl}
-              alt={selectedArtwork.title}
-            />
-            <div className="lightbox__info">
-              <span className="gallery__card-category" style={{ display: 'inline-block', marginBottom: 'var(--space-xs)' }}>
-                {selectedArtwork.category}
-              </span>
-              <h3 className="lightbox__title">{selectedArtwork.title}</h3>
-              {selectedArtwork.description && (
-                <p className="lightbox__description">{selectedArtwork.description}</p>
-              )}
-              {(() => {
-                let tags: string[] = [];
-                try {
-                  tags = selectedArtwork.tags ? JSON.parse(selectedArtwork.tags) : [];
-                } catch {}
-                if (tags.length === 0) return null;
-                return (
-                  <div className="gallery__card-tags" style={{ marginTop: 'var(--space-md)' }}>
-                    {tags.map((tag) => (
-                      <span key={tag} className="gallery__tag">
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                );
-              })()}
+          <button
+            className="lightbox__close"
+            onClick={() => setSelectedArtwork(null)}
+            aria-label="Close lightbox"
+          >
+            &times;
+          </button>
+          {selectedArtwork && (
+            <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                ref={imageRef}
+                className="lightbox__image"
+                src={selectedArtwork.imageUrl}
+                alt={selectedArtwork.title}
+              />
+              <div className="lightbox__info">
+                <span className="gallery__card-category" style={{ display: 'inline-block', marginBottom: 'var(--space-xs)' }}>
+                  {selectedArtwork.category}
+                </span>
+                <h3 className="lightbox__title">{selectedArtwork.title}</h3>
+                {selectedArtwork.description && (
+                  <p className="lightbox__description">{selectedArtwork.description}</p>
+                )}
+                {(() => {
+                  let tags: string[] = [];
+                  try {
+                    tags = selectedArtwork.tags ? JSON.parse(selectedArtwork.tags) : [];
+                  } catch {}
+                  if (tags.length === 0) return null;
+                  return (
+                    <div className="gallery__card-tags" style={{ marginTop: 'var(--space-md)', marginBottom: 'var(--space-md)' }}>
+                      {tags.map((tag) => (
+                        <span key={tag} className="gallery__tag">
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  );
+                })()}
+
+                {/* Actions: Fullscreen & Open Original */}
+                <div style={{ display: 'flex', gap: 'var(--space-sm)', marginTop: 'var(--space-sm)', width: '100%' }}>
+                  <a
+                    href={selectedArtwork.imageUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn--outline"
+                    style={{ padding: '8px 12px', fontSize: 'var(--text-xs)', flex: 1, textAlign: 'center', fontWeight: 600 }}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Open Original
+                  </a>
+                  <button
+                    type="button"
+                    className="btn btn--primary"
+                    style={{ padding: '8px 12px', fontSize: 'var(--text-xs)', flex: 1, fontWeight: 600 }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const img = imageRef.current;
+                      if (img) {
+                        if (img.requestFullscreen) {
+                          img.requestFullscreen();
+                        } else if ((img as any).webkitRequestFullscreen) {
+                          (img as any).webkitRequestFullscreen();
+                        }
+                      }
+                    }}
+                  >
+                    Fullscreen
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>,
+        document.body
+      )}
     </section>
   );
 }
