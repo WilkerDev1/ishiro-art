@@ -385,19 +385,17 @@ export default async function HomePage() {
       </section>
 
       {/* ═══════════════ CONTACT ═══════════════ */}
-      <section id="contact" className="contact">
+      <section id="contact" className="contact" style={{ background: 'var(--primary)', color: 'var(--dark)' }}>
         <ScrollReveal>
           <div className="deco-line" />
-          <h2 className="section-title section-title--center">GET IN TOUCH</h2>
+          <h2 className="section-title section-title--center" style={{ color: 'var(--dark)' }}>GET IN TOUCH</h2>
         </ScrollReveal>
 
         <ScrollReveal animation="reveal-scale" delay={200}>
-          <div className="contact__box">
-            <a href={`mailto:${email}`} className="contact__email">
-              {email}
-            </a>
-            <p className="contact__subtitle">COMMISSIONS OPEN</p>
-          </div>
+          <a href={`mailto:${email}`} className="contact__email">
+            {email}
+          </a>
+          <p className="contact__subtitle">COMMISSIONS OPEN</p>
         </ScrollReveal>
       </section>
 
