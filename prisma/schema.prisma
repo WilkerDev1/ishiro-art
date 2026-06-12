@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Artwork {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  imageUrl    String
+  category    String   @default("Illustrations")
+  tags        String   @default("[]")
+  featured    Boolean  @default(false)
+  order       Int      @default(0)
+  width       Int?
+  height      Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SocialLink {
+  id       String  @id @default(cuid())
+  platform String
+  url      String
+  label    String?
+  handle   String?
+  icon     String?
+  order    Int     @default(0)
+  visible  Boolean @default(true)
+}
+
+model SiteConfig {
+  id           String  @id @default("main")
+  artistName   String  @default("ISHIRO")
+  tagline      String  @default("Cute & Funny Artist")
+  email        String? @default("ishiro@example.com")
+  bio          String? @default("19 | Cute & Funny Artist | Commissions Open (DMs)")
+  heroImageUrl String?
+  avatarUrl    String?
+}
+
+model Admin {
+  id       String @id @default(cuid())
+  username String @unique
+  password String
+}

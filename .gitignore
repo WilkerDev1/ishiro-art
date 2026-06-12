@@ -39,3 +39,20 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local databases
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+
+# chrome devtools plugin binaries
+/chrome/
+/control.tar.xz
+/etc/
+/opt/
+/usr/
+
+# dynamic media uploads
+/public/uploads/*
+!/public/uploads/.gitkeep

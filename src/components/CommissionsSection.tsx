@@ -1,0 +1,248 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+import type { Artwork } from '@/generated/prisma/client';
+
+interface CommissionsSectionProps {
+  artworks: Artwork[];
+}
+
+export default function CommissionsSection({ artworks }: CommissionsSectionProps) {
+  const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  // Monitor scroll position to update dots
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const handleScroll = () => {
+      const children = Array.from(track.children) as HTMLElement[];
+      if (children.length === 0) return;
+
+      const trackRect = track.getBoundingClientRect();
+      const trackLeft = trackRect.left + parseFloat(getComputedStyle(track).paddingLeft);
+
+      let closestIndex = 0;
+      let minDistance = Infinity;
+
+      children.forEach((child, index) => {
+        if (!child.classList.contains('commissions__card')) return;
+        const childRect = child.getBoundingClientRect();
+        const distance = Math.abs(childRect.left - trackLeft);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      const cardChildren = children.filter(c => c.classList.contains('commissions__card'));
+      const activeCard = cardChildren[closestIndex];
+      const actualIndex = cardChildren.indexOf(activeCard);
+      
+      if (actualIndex !== -1) {
+        setActiveIndex(actualIndex);
+      }
+    };
+
+    track.addEventListener('scroll', handleScroll);
+    return () => track.removeEventListener('scroll', handleScroll);
+  }, [artworks.length]);
+
+  // Handle ESC key for Lightbox close
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedArtwork(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const handlePrev = () => {
+    const track = trackRef.current;
+    if (!track) return;
+    const cardChildren = Array.from(track.children).filter(
+      c => c.classList.contains('commissions__card')
+    ) as HTMLElement[];
+    const prevIndex = Math.max(0, activeIndex - 1);
+    const targetCard = cardChildren[prevIndex];
+    if (targetCard) {
+      track.scrollTo({
+        left: targetCard.offsetLeft - track.offsetLeft,
+        behavior: 'smooth',
+      });
+      setActiveIndex(prevIndex);
+    }
+  };
+
+  const handleNext = () => {
+    const track = trackRef.current;
+    if (!track) return;
+    const cardChildren = Array.from(track.children).filter(
+      c => c.classList.contains('commissions__card')
+    ) as HTMLElement[];
+    const nextIndex = Math.min(cardChildren.length - 1, activeIndex + 1);
+    const targetCard = cardChildren[nextIndex];
+    if (targetCard) {
+      track.scrollTo({
+        left: targetCard.offsetLeft - track.offsetLeft,
+        behavior: 'smooth',
+      });
+      setActiveIndex(nextIndex);
+    }
+  };
+
+  const handleDotClick = (index: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const cardChildren = Array.from(track.children).filter(
+      c => c.classList.contains('commissions__card')
+    ) as HTMLElement[];
+    const targetCard = cardChildren[index];
+    if (targetCard) {
+      track.scrollTo({
+        left: targetCard.offsetLeft - track.offsetLeft,
+        behavior: 'smooth',
+      });
+      setActiveIndex(index);
+    }
+  };
+
+  return (
+    <section id="commissions" className="commissions-section section" style={{ background: 'var(--primary)', color: 'var(--dark)' }}>
+      <div className="container">
+        <h2 className="section-title" style={{ color: 'var(--dark)', marginBottom: 'var(--space-xl)' }}>
+          COMMISSION SAMPLES
+        </h2>
+
+        {/* Carousel Track */}
+        <div className="carousel-container">
+          {/* Navigation Arrows */}
+          {artworks.length > 1 && (
+            <>
+              <button
+                className="carousel-btn-nav carousel-btn-nav--prev"
+                onClick={handlePrev}
+                aria-label="Previous commission artwork"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              </button>
+              <button
+                className="carousel-btn-nav carousel-btn-nav--next"
+                onClick={handleNext}
+                aria-label="Next commission artwork"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </>
+          )}
+
+          <div
+            ref={trackRef}
+            className="commissions__track"
+          >
+            {artworks.map((work) => (
+              <div
+                key={work.id}
+                className="commissions__card"
+                onClick={() => setSelectedArtwork(work)}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={work.imageUrl}
+                  alt={work.title}
+                  loading="lazy"
+                />
+                
+                {/* Card Title Info */}
+                <div
+                  className="commissions__card-info"
+                  style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    padding: 'var(--space-md)',
+                    background: 'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.85) 100%)',
+                    zIndex: 2,
+                  }}
+                >
+                  <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-base)', color: 'var(--text-primary)' }}>
+                    {work.title}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Navigation Dots */}
+          {artworks.length > 1 && (
+            <div className="carousel-dots carousel-dots--light">
+              {artworks.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleDotClick(idx)}
+                  className={`carousel-dot ${activeIndex === idx ? 'active' : ''}`}
+                  aria-label={`Go to commission slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Lightbox Modal */}
+      <div
+        className={`lightbox ${selectedArtwork ? 'open' : ''}`}
+        onClick={() => setSelectedArtwork(null)}
+        aria-hidden={!selectedArtwork}
+      >
+        <button
+          className="lightbox__close"
+          onClick={() => setSelectedArtwork(null)}
+          aria-label="Close lightbox"
+        >
+          &times;
+        </button>
+        {selectedArtwork && (
+          <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="lightbox__image"
+              src={selectedArtwork.imageUrl}
+              alt={selectedArtwork.title}
+            />
+            <div className="lightbox__info">
+              <span className="gallery__card-category" style={{ display: 'inline-block', marginBottom: 'var(--space-xs)' }}>
+                {selectedArtwork.category}
+              </span>
+              <h3 className="lightbox__title">{selectedArtwork.title}</h3>
+              {selectedArtwork.description && (
+                <p className="lightbox__description">{selectedArtwork.description}</p>
+              )}
+              {(() => {
+                let tags: string[] = [];
+                try {
+                  tags = selectedArtwork.tags ? JSON.parse(selectedArtwork.tags) : [];
+                } catch {}
+                if (tags.length === 0) return null;
+                return (
+                  <div className="gallery__card-tags" style={{ marginTop: 'var(--space-md)' }}>
+                    {tags.map((tag) => (
+                      <span key={tag} className="gallery__tag">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                );
+              })()}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
