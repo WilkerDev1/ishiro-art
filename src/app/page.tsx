@@ -188,7 +188,7 @@ export default async function HomePage() {
           className="hero__bg"
           style={{
             background: config?.heroImageUrl
-              ? `url(${config.heroImageUrl}) center/cover no-repeat`
+              ? `url(${config.heroImageUrl}) right center/cover no-repeat`
               : 'var(--primary)',
           }}
         />
