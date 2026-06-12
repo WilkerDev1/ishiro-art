@@ -216,6 +216,10 @@ ul, ol {
   -webkit-text-fill-color: transparent;
 }
 
+.text-accent-primary {
+  color: var(--primary);
+}
+
 /* ---------- Layout Utilities ---------- */
 .page-wrapper {
   padding-left: var(--sidebar-width);
@@ -1300,6 +1304,40 @@ ul, ol {
   }
 }
 
+.contact__box {
+  max-width: 650px;
+  margin: var(--space-xl) auto 0 auto;
+  padding: var(--space-xl) var(--space-lg);
+  border: 4px solid var(--primary);
+  background: var(--dark-surface);
+  box-shadow: 8px 8px 0px var(--primary);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.contact__box:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0px var(--primary);
+}
+
+@media (max-width: 768px) {
+  .contact__box {
+    padding: var(--space-lg) var(--space-md);
+    margin: var(--space-lg) auto 0 auto;
+    border-width: 3px;
+    box-shadow: 6px 6px 0px var(--primary);
+    max-width: 100%;
+  }
+  .contact__box:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0px var(--primary);
+  }
+}
+
 .contact__email {
   font-family: var(--font-display);
   font-size: var(--text-3xl);
@@ -1324,7 +1362,7 @@ ul, ol {
 }
 
 .contact__email:hover {
-  filter: drop-shadow(0 0 20px rgba(255, 69, 0, 0.5));
+  filter: drop-shadow(0 0 20px var(--primary));
   transform: scale(1.02);
 }
 
@@ -1332,7 +1370,7 @@ ul, ol {
   font-family: var(--font-heading);
   font-size: var(--text-lg);
   color: var(--text-secondary);
-  margin-top: var(--space-md);
+  margin-top: 0;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }

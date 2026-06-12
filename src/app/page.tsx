@@ -360,7 +360,7 @@ export default async function HomePage() {
           <ScrollReveal animation="reveal-right">
             <div className="about__text">
               <h2>
-                ABOUT <span className="text-gradient">{artistName}</span>
+                ABOUT <span className="text-accent-primary">{artistName}</span>
               </h2>
               <p>{bio}</p>
               {aboutText && <p>{aboutText}</p>}
@@ -392,10 +392,12 @@ export default async function HomePage() {
         </ScrollReveal>
 
         <ScrollReveal animation="reveal-scale" delay={200}>
-          <a href={`mailto:${email}`} className="contact__email">
-            {email}
-          </a>
-          <p className="contact__subtitle">COMMISSIONS OPEN</p>
+          <div className="contact__box">
+            <a href={`mailto:${email}`} className="contact__email">
+              {email}
+            </a>
+            <p className="contact__subtitle">COMMISSIONS OPEN</p>
+          </div>
         </ScrollReveal>
       </section>
 
